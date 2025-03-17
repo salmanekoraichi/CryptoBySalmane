@@ -400,17 +400,93 @@ section = st.sidebar.selectbox(
 ###########################################
 # 1. Introduction à la Cryptographie      #
 ###########################################
+
 if section == "Introduction à la Cryptographie":
-    st.title("Introduction à la Cryptographie")
-    # Ajout de la mention de l'auteur et de l'objectif pédagogique
-    st.write("**Projet réalisé par Salmane Koraichi pour des fins pédagogiques.**")
+    st.title("🔐 Introduction à la Cryptographie")
+    
+    # Add colorful header with custom CSS
+    st.markdown("""
+        <style>
+        .big-font {
+            font-size:24px !important;
+            color: #FF4B4B;
+        }
+        .highlight {
+            padding: 20px;
+            background: linear-gradient(45deg, #FF9A8B, #FF6B6B);
+            border-radius: 10px;
+            color: white;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+    
+    # Author info with emoji and styling
+    st.markdown('<p class="big-font">👨‍💻 Projet réalisé par Salmane Koraichi</p>', unsafe_allow_html=True)
+    
+    # Fun facts section
+    st.sidebar.markdown("### 🎯 Le saviez-vous?")
+    fun_facts = [
+        "La cryptographie était utilisée par Jules César!",
+        "Le mot 'cryptographie' vient du grec 'kryptos' (caché) et 'graphein' (écrire)",
+        "La machine Enigma a été cassée par Alan Turing pendant la WW2"
+    ]
+    st.sidebar.info(random.choice(fun_facts))
+    
+    # Main content with colorful sections
+    st.markdown('<div class="highlight">', unsafe_allow_html=True)
     st.write("""
-    La cryptographie est l'art de protéger les informations en les transformant de façon à ce qu'elles soient 
-    inintelligibles pour toute personne non autorisée. Elle repose sur des algorithmes qui transforment un message 
-    en clair en un message chiffré et vice versa. Cette application permet de découvrir et d'expérimenter avec 
-    divers algorithmes allant des méthodes classiques (comme le chiffre de César ou Atbash) aux méthodes modernes 
-    (telles que AES, RSA et Diffie-Hellman).
+    🔑 La cryptographie est l'art de protéger les informations en les transformant 
+    de façon à ce qu'elles soient inintelligibles pour toute personne non autorisée.
     """)
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Visual timeline
+    st.subheader("📅 Évolution de la Cryptographie")
+    timeline = {
+        "Antiquité": "Chiffres de substitution simples",
+        "Moyen Âge": "Codes et chiffres polyalphabétiques",
+        "20ème siècle": "Machines de chiffrement (Enigma)",
+        "Aujourd'hui": "Cryptographie quantique et blockchain"
+    }
+    
+    for era, description in timeline.items():
+        col1, col2 = st.columns([1, 3])
+        with col1:
+            st.markdown(f"**{era}**")
+        with col2:
+            st.info(description)
+    
+    # Interactive elements
+    st.subheader("🎮 Test rapide")
+    user_guess = st.text_input("Déchiffrez ce message simple: KDOOR (indice: César-3)")
+    if user_guess.lower() == "hello":
+        st.balloons()
+        st.success("Bravo! Vous avez déchiffré le message! 🎉")
+    
+    # Visual representation of encryption
+    st.subheader("🔄 Visualisation du Chiffrement")
+    cols = st.columns(3)
+    with cols[0]:
+        st.markdown("**Message Original**")
+        st.markdown("```\nHELLO\n```")
+    with cols[1]:
+        st.markdown("**🔐**")
+    with cols[2]:
+        st.markdown("**Message Chiffré**")
+        st.markdown("```\nKDOOR\n```")
+    
+    # Modern applications section
+    st.subheader("🌐 Applications Modernes")
+    applications = {
+        "💳 Paiements en ligne": "Sécurisation des transactions",
+        "📱 Messagerie": "Chiffrement de bout en bout",
+        "🔒 Mots de passe": "Hachage et stockage sécurisé",
+        "🌐 HTTPS": "Sécurisation du web"
+    }
+    
+    for app, desc in applications.items():
+        st.markdown(f"**{app}**: {desc}")
+
 
 ###########################################
 # 2. Cryptographie Ancienne               #
